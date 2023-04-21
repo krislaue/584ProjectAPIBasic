@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Popmotion and Spoonacular</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+      <main class="flex min-h-screen flex-col items-center justify-between p-10">
+        <div class="container">
+    <div class="z-10 w-full max-w-5xl items-center justify-between font-mono lg:flex flex-col">
+      <p class="font-mono text-5xl lg:text-2x1 fixed left-0 top-0 flex w-full items-center justify-center border-b border-gray-300 bg-gray-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/60 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/60">
+        We picked a food for you!
+      </p>
+    </div>
+
+    <div id="recipe-container"></div>
+    </div>
+    <div class="wrapper">
+  
+      <div class="wrapper1">
+          <!-- row 1, 4 individual boxes -->
+        <article class="sparkles">
+          <h3>Favorite Dessert</h3>
+          <img src="https://spoonacular.com/recipeImages/632660-312x231.jpg" alt="Unicorn in pink flowers">
+          <p>Everyone loves this dessert: Apple or Peach Strudel</p>
+        </article>
+        <article class="buttercup">
+          <h3>Favorite Main Course</h3>
+          <img src="https://spoonacular.com/recipeImages/716429-312x231.jpg" alt="Unicorn in sky">
+          <p>Everyone loves this main course: Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs</p>
+\        </article>
+    </div>
+</div>
+
+
+
+    <script src="https://unpkg.com/popmotion@8.1.24/dist/popmotion.global.min.js"></script>
+	<script>
+
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get("query");
+          var tagsArr = query.split(" ");
+          var tagsStringToAppend = "";
+
+          for (var i = 0; i < tagsArr.length; i++) {
+            if (i==tagsArr.length-1) {
+              tagsStringToAppend += tagsArr[i]
+            } else {
+              tagsStringToAppend += tagsArr[i] + ",+"
+
+
+            }
+          }
+            tagsStringToAppend += "&number=1&apiKey=2d8313f7d109467d973708c2c0146466";
+            var url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + tagsStringToAppend;
+
+          function fetchRecipes() {
+            fetch(url)
+              .then(response => response.json())
+              .then(data => {
+                displayRecipes(data);
+              })
+              .catch(error => console.log(error));
+          }
+
+          function displayRecipes(recipes) {
+            var recipeContainer = document.getElementById("recipe-container");
+            recipeContainer.innerHTML = "";
+
+            recipes.forEach(recipe => {
+              var recipeDiv = document.createElement("div");
+              var recipeImage = document.createElement("img");
+              recipeImage.src = recipe.image;
+              recipeImage.alt = "Picture of the food";
+              recipeImage.width = 500;
+              recipeImage.height = 500;
+
+              var recipeTitle = document.createElement("p");
+              recipeTitle.textContent = recipe.title;
+
+              recipeDiv.appendChild(recipeImage);
+              recipeDiv.appendChild(recipeTitle);
+              recipeContainer.appendChild(recipeDiv);
+            });
+          }
+
+          fetchRecipes();
+
+	</script>
+  </main>
+
+</body>
+</html>

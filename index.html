@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Popmotion Animation</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <div class="container">
+    	<div class="inner">
+        <h1>Ingredients</h1>
+        <p>What ingredients do you want in your recipe?</p>
+        <form action="display.html" method="get">
+            <span class="msg">Ingredients please!</span>
+            <input type="text" placeholder="Ex: Banana Strawberry Milk" class="txtfld" id="query" name="query">
+
+            <input type="submit" value="Enter info" class="btn">
+        </form>
+        	</div>
+    </div>
+    <div class="photo">
+    	<img src = "recipe-analysis.jpg">
+    </div>
+
+
+
+    <script src="https://unpkg.com/popmotion@8.1.24/dist/popmotion.global.min.js"></script>
+	<script>
+	    const container = popmotion.styler(document.querySelector('.photo'));
+
+	    const polarToCartesian = ({ angle, radius }) => ({
+		  x: radius * Math.cos(angle),
+		  y: radius * Math.sin(angle)
+		});
+
+
+        popmotion.physics({
+          from: { angle: 0, radius: 150 },
+          velocity: { angle: 2, radius: 0 }
+        }).pipe(polarToCartesian)
+          .start(container.set);
+
+
+
+	</script>
+</body>
+</html>

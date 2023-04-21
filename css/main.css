@@ -1,0 +1,85 @@
+    html,body {
+        margin:0;
+        background:lightgray;
+        font-family: Arial;
+    }
+
+    h1 {margin:0;}
+
+    .container {
+        width: 350px;
+        padding: 2em;
+        background:white;
+        border-radius: 8px;
+        margin: 10% auto;
+    }
+
+    .txtfld {
+        width: calc(100% - 2em);
+        padding:1em;
+        margin-top: 1em;
+    }
+    .btn {
+        width:100%;
+        background:#00c3ff;
+        color:white;
+        margin-top:2em;
+        border:none;
+        border-radius:5px;
+        padding:1em;
+        font-size:1.2em;
+        cursor:pointer;
+    }
+
+    p {color:gray;}
+    
+    .msg {
+        position: absolute;
+        padding: .5em;
+        background: rgba(0,0,0,.8);
+        color: #fff;
+        opacity: 0;
+    }    
+
+
+.wrapper {
+  display: grid;
+  gap: 20px;
+    width: 97%;
+    max-width: 1200px;
+    margin: 0 auto;
+    float: none;
+    background-color: #ffffff;
+}
+div img {
+    width: 100%;
+    max-width: 500px; 
+}
+
+.container {
+    align-items: center;
+    justify-content: center;
+}
+.wrapper1 {
+  display: grid;
+  gap: 20px;
+    width: 97%;
+    max-width: 1200px;
+    margin: 0 auto;
+    float: none;
+    background-color: #ffffff;
+}
+
+.sparkles, .buttercup{
+    background-color: #FFFCE6;
+}
+
+  .sparkles{
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+  
+  .buttercup{
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
